@@ -1,12 +1,11 @@
 (window => {
   const {
     screen: { width, height },
-    navigator: { language, doNotTrack: ndnt, msDoNotTrack: msdnt },
+    navigator: { language },
     location,
     document,
     history,
     top,
-    doNotTrack,
   } = window;
   const { currentScript, referrer } = document;
   if (!currentScript) return;
@@ -24,7 +23,6 @@
   const beforeSend = attr(`${_data}before-send`);
   const tag = attr(`${_data}tag`) || undefined;
   const autoTrack = attr(`${_data}auto-track`) !== _false;
-  const dnt = attr(`${_data}do-not-track`) === _true;
   const excludeSearch = attr(`${_data}exclude-search`) === _true;
   const excludeHash = attr(`${_data}exclude-hash`) === _true;
   const domain = attr(`${_data}domains`) || '';
@@ -65,10 +63,6 @@
     id: identity ? identity : undefined,
   });
 
-  const hasDoNotTrack = () => {
-    const dnt = doNotTrack || ndnt || msdnt;
-    return dnt === 1 || dnt === '1' || dnt === 'yes';
-  };
 
   /* Event handlers */
 
@@ -144,9 +138,7 @@
   const trackingDisabled = () =>
     disabled ||
     !website ||
-    localStorage?.getItem('umami.disabled') ||
-    (domain && !domains.includes(hostname)) ||
-    (dnt && hasDoNotTrack());
+    (domain && !domains.includes(hostname)) ||;
 
   const send = async (payload, type = 'event') => {
     if (trackingDisabled()) return;
