@@ -138,7 +138,7 @@
   const trackingDisabled = () =>
     disabled ||
     !website ||
-    (domain && !domains.includes(hostname)) ||;
+    (domain && !domains.includes(hostname));
 
   const send = async (payload, type = 'event') => {
     if (trackingDisabled()) return;
