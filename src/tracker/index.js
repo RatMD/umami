@@ -25,29 +25,16 @@
   const attr = currentScript.getAttribute.bind(currentScript);
   const config = value => attr(`${_data}${value}`);
 
-<<<<<<< HEAD
-  const website = attr(`${_data}website-id`);
-  const hostUrl = attr(`${_data}host-url`);
-  const beforeSend = attr(`${_data}before-send`);
-  const tag = attr(`${_data}tag`) || undefined;
-  const autoTrack = attr(`${_data}auto-track`) !== _false;
-  const excludeSearch = attr(`${_data}exclude-search`) === _true;
-  const excludeHash = attr(`${_data}exclude-hash`) === _true;
-  const domain = attr(`${_data}domains`) || '';
-  const credentials = attr(`${_data}fetch-credentials`) || 'omit';
-=======
   const website = config('website-id');
   const hostUrl = config('host-url');
   const beforeSend = config('before-send');
   const tag = config('tag') || undefined;
   const autoTrack = config('auto-track') !== _false;
-  const dnt = config('do-not-track') === _true;
   const excludeSearch = config('exclude-search') === _true;
   const excludeHash = config('exclude-hash') === _true;
   const domain = config('domains') || '';
   const credentials = config('fetch-credentials') || 'omit';
   const perf = config('performance') === _true;
->>>>>>> upstream/master
 
   const domains = domain.split(',').map(n => n.trim());
   const host =
